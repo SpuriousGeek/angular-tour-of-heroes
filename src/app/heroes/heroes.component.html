@@ -1,0 +1,31 @@
+<!-- <h2>{{hero.name | uppercase}} Details</h2>
+<div><span>id: </span>{{hero.id}}</div>
+<div>
+  <label for="name">Hero name: </label>
+  <input id="name" [(ngModel)]="hero.name" placeholder="name">
+</div> -->
+
+<!-- The *ngFor is Angular's repeater directive. It repeats the host element for each element in a list.
+     In this example <li> is the host element, heroes holds the mock heroes data, hero holds the current hero object
+     for each iteration through the list. -->
+<h2>My Heroes</h2>
+<div>
+  <label for="new-hero">Hero name: </label>
+  <input id="new-hero" #heroName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button class="add-button" (click)="add(heroName.value); heroName.value=''">Add hero</button>
+</div>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+    <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
+  </li>
+</ul>
+
+<!-- Angular Property Binding: One-way data binding from the selected hero
+     property of the HeroesComponent to the hero property of the target element,
+     which maps to the hero property of the HeroDetailComponent. -->
+<!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->

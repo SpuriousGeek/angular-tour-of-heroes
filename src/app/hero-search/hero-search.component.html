@@ -1,0 +1,17 @@
+<div id="search-component">
+  <label for="search-box">Hero Search</label>
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+  <!-- Iterate over an Observable (this is what the $ means); not an array.
+       ngFor can't do anything with an Observable so the pipe is used with
+       async keyword. This identifies Angular's AsyncPipe and subscribes to
+       an Observable automatically so you don't have to do so in the
+       component class. -->
+  <ul class="search-result">
+    <li *ngFor="let hero of heroes$ | async">
+      <a routerLink="/detail/{{hero.id}}">
+        {{hero.name}}
+      </a>
+    </li>
+  </ul>
+</div>
